@@ -1,4 +1,4 @@
-package goTools
+package goRPC
 
 import (
 	"bytes"
@@ -28,7 +28,7 @@ var dec = gob.NewDecoder(&tempBuffer)
 输入：src 需要编码的数据，可选参数 index 需要注册的类型
 输出：编码后的数据、可能的异常
 */
-func FGobEncode(src interface{}, index ... int) (bytes.Buffer, error) {
+func GobEncode(src interface{}, index ... int) (bytes.Buffer, error) {
 	if index != nil {
 		gob.Register(RegistNumb[index[0]])
 	}
@@ -43,7 +43,7 @@ func FGobEncode(src interface{}, index ... int) (bytes.Buffer, error) {
 输入：输出字典的指针
 输出：可能的 error
 */
-func FGobDecodeMSInt(dst *map[string]int) error {
+func GobDecodeMSInt(dst *map[string]int) error {
 	err := dec.Decode(dst)
 	return err
 }
@@ -54,7 +54,7 @@ func FGobDecodeMSInt(dst *map[string]int) error {
 输入：输出字典的指针
 输出：可能的 error
 */
-func FGobDecodeMSSInt(dst *map[string]map[string]int) error {
+func GobDecodeMSSInt(dst *map[string]map[string]int) error {
 	err := dec.Decode(dst)
 	return err
 }
@@ -65,13 +65,13 @@ func FGobDecodeMSSInt(dst *map[string]map[string]int) error {
 输入：输出字典的指针
 输出：可能的 error
 */
-func FGobDecodeMSSItf(dst *map[string]map[string]interface{}) error {
+func GobDecodeMSSItf(dst *map[string]map[string]interface{}) error {
 	err := dec.Decode(dst)
 	return err
 }
 
 
-func FGobDecodeMSSSItf(dst *map[string]map[string]map[string]interface{}) error {
+func GobDecodeMSSSItf(dst *map[string]map[string]map[string]interface{}) error {
 	err := dec.Decode(dst)
 	return err
 }
